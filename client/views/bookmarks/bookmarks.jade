@@ -1,0 +1,15 @@
+h3 Bookmarks
+
+.row
+  .col-xs-3
+    form.form-horizontal(novalidate, role='form', name='categoryForm')
+      fieldset
+        #legend
+          legend Add Category
+        .form-group
+          label.control-label(for='name') Name
+          .controls
+            input.form-control#name(type='text', name='name', ng-model='name', required, autofocus)
+        .form-group
+          button.btn.btn-success(ng-show='categoryForm.$valid', ng-click='addCategory()') Add Category
+  .col-xs-9
