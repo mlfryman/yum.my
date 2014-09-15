@@ -1,3 +1,4 @@
+// User Factory
 (function(){
   'use strict';
 
@@ -5,11 +6,17 @@
   .factory('User', ['$http', function($http){
 
     function register(user){
-      return $http.post('/register');
+      return $http.post('/register', user);
     }
 
-    return {register:register};
+    function login(user){
+      return $http.post('/login', user);
+    }
+
+    function logout(){
+      return $http.delete('/logout');
+    }
+
+    return {register:register, login:login, logout:logout};
   }]);
 })();
-
-

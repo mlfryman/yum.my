@@ -1,0 +1,13 @@
+// Nav controller
+
+(function(){
+  'use strict';
+// find existing yum.my module
+  angular.module('yum.my')
+  .controller('NavCtrl', ['$scope', function($scope){
+    $scope.$on('authenticated', function(event, email){
+      if(email === 'anonymous'){email = null;}
+      $scope.email = email;
+    });
+  }]);
+})();

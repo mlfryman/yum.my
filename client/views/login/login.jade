@@ -1,9 +1,9 @@
 .row
   .col-xs-3
-    form.form-horizontal(novalidate, role='form', name='registerForm')
+    form.form-horizontal(novalidate, role='form', name='loginForm')
       fieldset
         #legend
-          legend Register
+          legend Login
         .form-group
           label.control-label(for='email') E-mail
           .controls
@@ -15,6 +15,7 @@
             input.form-control#password(type='password', name='password', ng-model='user.password', required, ng-minlength='6')
             p.help-block Password should be at least 6 characters
         .form-group
-          button.btn.btn-success(ng-show='registerForm.$valid', ng-click='register()') Register
+          button.btn.btn-success(ng-show='loginForm.$valid', ng-click='login()') Login
   .col-xs-9
+
 
