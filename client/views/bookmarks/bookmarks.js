@@ -8,6 +8,10 @@
 
     $scope.filter = {};
 
+    $scope.toggleCategory = function(){
+      $scope.hideCategory = !!!$scope.hideCategory;
+    };
+
     Category.all().then(function(response){
       $scope.categories = response.data.categories;
     });
@@ -31,12 +35,16 @@
       });
     };
 
-    $scope.setFilter = function(category){
-      if(!category){
-        $scope.filter = {};
-      }else{
-        $scope.filter.category = category;
-      }
+    $scope.filterBookmarks = function(categoryId){
+      $scope.filtered = $scope.bookmarks.filter(function(bookmark){
+        return bookmark.categoryId === categoryId;
+      });
+    };
+
+    $scope.markActive = function(category){
+      $scope.categories.forEach(function(category){
+        category.isActive = false;
+      });
     };
 
   }]);

@@ -1,36 +1,38 @@
 h3 Bookmarks
 .row
   .col-xs-3
-    h5 Add Category
-    form(role='form', novalidate, name='categoryForm')
-      .form-group
-        label(for='name') Category Name
-        input.form-control#name(type='text', name='name', ng-model='name', required)
-      button.btn.btn-primary(type='submit', ng-show='categoryForm.$valid', ng-click='addCategory()') Add Category
-  .col-xs-2
-  .col-xs-3
-    h5 Add Bookmark
-    form(novalidate, role='form', name='bookmarkForm')
-      .form-group
-        label(for='bName') Bookmark Name
-        input.form-control#bName(type='text', name='bName', ng-model='bookmark.name', required, ng-minlength='3')
-      .form-group
-        label(for='bUrl') URL
-        input.form-control#bUrl(type='text', name='bUrl', ng-model='bookmark.url', required, ng-pattern='/^http/')
-      .form-group
-        label Category
-        select.form-control#bCat(ng-model='bookmark.categoryId', name='categoryId', ng-options='c._id as c.name for c in categories | orderBy:\'name\'', required)
-          option(value='') Select Category
-      button.btn.btn-danger(type='submit', ng-show='bookmarkForm.$valid', ng-click='addBookmark()') Bookmark It!
-  .col-xs-4
-
+    .panel.panel-primary
+      .panel-heading
+        .panel-title Add Bookmark
+      .panel-body
+        form(novalidate, role='form', name='bookmarkForm')
+          .form-group
+            label(for='bName') Bookmark Name
+            input.form-control#bName(type='text', name='bName', ng-model='bookmark.name', required, ng-minlength='3')
+          .form-group
+            label(for='bUrl') URL
+            input.form-control#bUrl(type='url', name='bUrl', ng-model='bookmark.url', required)
+          .form-group
+            label Category
+            select.form-control#bCat(ng-model='bookmark.categoryId', name='categoryId', ng-options='c._id as c.name for c in categories | orderBy:"name"', required)
+              option(value='') Select Category
+          button.btn.btn-success(type='submit', ng-show='bookmarkForm.$valid', ng-click='addBookmark()') Bookmark It!
+        .row
+          button.btn.btn-primary.btn-sm(ng-click='toggleCategory()') Add Category
+          form(role='form', novalidate, name='categoryForm', ng-hide='hideCategory')
+            .form-group
+              label(for='name') Category Name
+              input.form-control#name(type='text', name='name', ng-model='name', required)
+            button.btn.btn-primary(type='submit', ng-show='categoryForm.$valid', ng-click='addCategory()') Add Category
 .row
   .col-xs-6
-    h5 Categories
-    button.btn.btn-primary(type='button', ng-click='setFilter()') Clear Search
-    ul
-      li(ng-repeat='c in categories', ng-click='setFilter(c.name)') {{c.name}}
-  .col-xs-6
-    h5 Bookmarks
-    ul
-      li(ng-repeat='b in bookmarks | filter:filter:true'): a(href='{{b.url}}') {{b.name}}
+    .panel.panel-primary
+      .panel-heading
+        .panel-title Bookmarks
+      .panel-body
+        ul
+          li(ng-repeat='b in bookmarks | filter:filter:true'): a(href='{{b.url}}') {{b.name}}
+.row
+  .col-xs-3
+    #categories
+      .category(ng-class='{active:category.isActive}', ng-repeat='category in categories', ng-mouseover='filterBookmarks(category._id);markActive(category);') {{category.name}}

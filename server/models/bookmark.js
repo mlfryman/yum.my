@@ -1,13 +1,14 @@
 'use strict';
 
 var async    = require('async'),
+    Mongo    = require('mongodb'),
     Category = require('./category');
 
-function Bookmark(o){
+function Bookmark(o, user){
   this.name       = o.name;
   this.url        = o.url;
-  this.userId     = o.userId;
-  this.categoryId = o.categoryId;
+  this.userId     = user._id;
+  this.categoryId = Mongo.ObjectID(o.categoryId);
   this.created    = new Date();
 }
 
