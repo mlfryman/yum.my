@@ -1,4 +1,4 @@
-## name of project
+## yum.my
 ### Code Badges
 build status icon
 coverage status icon
@@ -8,7 +8,7 @@ coverage status icon
 ![Image2](https://raw.githubusercontent.com/nss-cohort-2014-06-07/express-template/master/docs/screenshots/two.jpg)
 
 ### Description
-write a description about your project
+yum.my is a social bookmarking app.
 
 ### Models
 ```
@@ -40,7 +40,7 @@ $ npm test
 ```
 
 ### Contributors
-- [Chyld Medford](https://github.com/chyld)
+- [Melanie Fryman](https://github.com/mlfryman)
 
 ### License
 [MIT](LICENSE)
