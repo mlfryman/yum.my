@@ -4,7 +4,7 @@
   angular.module('yum.my')
   .controller('LogoutCtrl', ['$location', 'User', function($location, User){
     User.logout().then(function(){
-      toastr.success('Successful logout.');
+      toastr.success('You are now logged out.');
       $location.path('/');
     });
   }]);

@@ -11,7 +11,6 @@
 
     $scope.$on('authenticated', function(event, email){ // listening to the message; once I receive it, I save it in browser's cache
       if(email === 'anonymous'){email = null;}
-
       $localForage.setItem('email', email).then(function(){
         $scope.email = email;
       });

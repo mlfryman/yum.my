@@ -6,12 +6,12 @@
     $scope.user = {};
 
     function success(response){
-      toastr.success('User successfully registered.');
+      toastr.success('Successfully registered!');
       $location.path('/login');
     }
 
     function failure(response){
-      toastr.error('Error during user registration, try again.');
+      toastr.error('That email is already registered, or the password is too short. Please try again.');
       $scope.user = {};
     }
 

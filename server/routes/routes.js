@@ -7,13 +7,14 @@ var morgan         = require('morgan'),
     RedisStore     = require('connect-redis')(session),
     debug          = require('../lib/debug'),
     security       = require('../lib/security'),
-    home           = require('../controllers/home'),
+    users          = require('../controllers/users'),
+    bookmarks      = require('../controllers/bookmarks'),
     categories     = require('../controllers/categories'),
-    users          = require('../controllers/users');
+    home           = require('../controllers/home');
 
 module.exports = function(app, express){
   app.use(morgan('dev'));
-  app.use(express.static(__dirname + '/../../public')); // all static files in client folder are rendered in this step
+  app.use(express.static(__dirname + '/../../public'));
   app.use(bodyParser.urlencoded({extended:true}));
   app.use(bodyParser.json());
   app.use(methodOverride());
@@ -25,12 +26,14 @@ module.exports = function(app, express){
   app.get('/home', home.index);
   app.post('/register', users.register);
   app.post('/login', users.login);
-  app.delete('/logout', users.logout);
 
   app.use(security.bounce);
+  app.delete('/logout', users.logout);
   app.post('/categories', categories.create);
-  app.get('/categories', categories.index);
+  app.all('/categories', categories.index);
+
+  app.post('/bookmarks', bookmarks.create);
+  app.all('/bookmarks', bookmarks.index);
 
   console.log('Express: Routes Loaded');
 };
-

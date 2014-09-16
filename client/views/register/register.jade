@@ -1,20 +1,24 @@
-.row
-  .col-xs-3
-    form.form-horizontal(novalidate, role='form', name='registerForm')
-      fieldset
-        #legend
-          legend Register
+#registerbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2(style='margin-top:50px')
+  .panel.panel-info
+    .panel-heading
+      .panel-title Sign Up
+      div(style='float:right; font-size: 85%; position: relative; top:-10px')
+        a(href='/#/login') Sign In
+    .panel-body
+      form.form-horizontal(novalidate, role='form', name='userForm')
         .form-group
-          label.control-label(for='email') E-mail
-          .controls
-            input.form-control#email(type='email', name='email', ng-model='user.email', required, autofocus)
+          label.col-md-3.control-label(for='email') Email
+          .col-md-9
+            input.form-control(type='email', name='email', ng-model='user.email', placeholder='Email Address', required, autofocus)
             p.help-block Please provide your E-mail
         .form-group
-          label.control-label(for='password') Password
-          .controls
-            input.form-control#password(type='password', name='password', ng-model='user.password', required, ng-minlength='6')
+          label.col-md-3.control-label(for='password') Password
+          .col-md-9
+            input.form-control(type='password', name='password', ng-model='user.password', placeholder='Password', required, ng-minlength='6')
             p.help-block Password should be at least 6 characters
-        .form-group
-          button.btn.btn-success(ng-show='registerForm.$valid', ng-click='register()') Register
-  .col-xs-9
+        .form-group(style='margin-top:10px')
+          .col-sm-12.controls
+            button.btn.btn-info(ng-show='userForm.$valid', ng-click='register()')
+              i.icon-hand-right
+              | Sign Up
 
